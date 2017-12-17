@@ -8,5 +8,6 @@ enum Command {
     OUTPUT,
     INPUT,
     LOOP_START,
-    LOOP_END
+    LOOP_END,
+    UNKNOWN
 };
