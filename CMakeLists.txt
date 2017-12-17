@@ -1,5 +1,5 @@
 cmake_minimum_required(VERSION 2.8.9)
-project(directory_test)
+project(brainfuck-interpreter)
 
 # Bring the headers into the project
 include_directories(include)
