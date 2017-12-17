@@ -1,3 +1,5 @@
+#pragma once
+
 enum Command {
     SHIFT_RIGHT,
     SHIFT_LEFT,

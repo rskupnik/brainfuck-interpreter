@@ -7,8 +7,9 @@ int main(int argc, char* argv[]) {
     
     cout << "Hello World" << endl;    
 
-    Interpreter interpreter();
-    Command cmd = interpreter.interpret(argv[]);
+    Interpreter interpreter;
+    char input = '.';
+    Command cmd = interpreter.interpret(&input);
 
     cout << cmd << endl;
 
