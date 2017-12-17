@@ -4,5 +4,5 @@
 
 class Interpreter {
     public:
-        Command interpret(char*);
+        Command interpret(char);
 };

@@ -9,7 +9,7 @@ int main(int argc, char* argv[]) {
 
     Interpreter interpreter;
     char input = '.';
-    Command cmd = interpreter.interpret(&input);
+    Command cmd = interpreter.interpret(input);
 
     cout << cmd << endl;
 
