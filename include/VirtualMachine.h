@@ -8,6 +8,8 @@ class VirtualMachine {
 
         void shiftRight();
 
+	int getMemoryPointer();
+
     private:
         char memory[MEMORY_SIZE];
 	int memoryPointer;
