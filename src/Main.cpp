@@ -16,6 +16,15 @@ int main(int argc, char* argv[]) {
     VirtualMachine vm;
     vm.shiftRight();
     cout << vm.getMemoryPointer() << endl;
+    cout << "Should be: 1" << endl << endl;
+
+    vm.shiftLeft();
+    cout << vm.getMemoryPointer() << endl;
+    cout << "Should be: 0" << endl << endl;
+
+    vm.shiftLeft();
+    cout << vm.getMemoryPointer() << endl;
+    cout << "Should be: 0" << endl;
 
     return 0;
 }

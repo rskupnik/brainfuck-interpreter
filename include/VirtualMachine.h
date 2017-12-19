@@ -7,6 +7,7 @@ class VirtualMachine {
 	VirtualMachine() : memory{0}, memoryPointer(0) {}
 
         void shiftRight();
+	void shiftLeft();
 
 	int getMemoryPointer();
 

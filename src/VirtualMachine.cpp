@@ -10,6 +10,16 @@ void VirtualMachine::shiftRight() {
     return;
 }
 
+void VirtualMachine::shiftLeft() {
+    if (this->memoryPointer == 0) {
+	return;
+    }
+
+    this->memoryPointer--;
+
+    return;
+}
+
 int VirtualMachine::getMemoryPointer() {
     return this->memoryPointer;
 }
