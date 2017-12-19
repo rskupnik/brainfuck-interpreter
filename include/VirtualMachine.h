@@ -8,6 +8,7 @@ class VirtualMachine {
 
         void shiftRight();
 	void shiftLeft();
+	void increment();
 
 	int getMemoryPointer();
 

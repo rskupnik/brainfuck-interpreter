@@ -20,6 +20,10 @@ void VirtualMachine::shiftLeft() {
     return;
 }
 
+void VirtualMachine::increment() {
+    return;
+}
+
 int VirtualMachine::getMemoryPointer() {
     return this->memoryPointer;
 }
