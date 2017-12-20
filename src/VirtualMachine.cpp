@@ -24,6 +24,10 @@ void VirtualMachine::increment() {
     this->memory[this->memoryPointer]++;
 }
 
+void VirtualMachine::decrement() {
+    this->memory[this->memoryPointer]--;
+}
+
 int VirtualMachine::getMemoryPointer() {
     return this->memoryPointer;
 }
