@@ -10,6 +10,7 @@ class VirtualMachine {
 	void shiftLeft();
 	void increment();
 	void decrement();
+	char readValue();
 
 	int getMemoryPointer();
 

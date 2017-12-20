@@ -28,6 +28,10 @@ void VirtualMachine::decrement() {
     this->memory[this->memoryPointer]--;
 }
 
+char VirtualMachine::readValue() {
+    return this->memory[this->memoryPointer];
+}
+
 int VirtualMachine::getMemoryPointer() {
     return this->memoryPointer;
 }
