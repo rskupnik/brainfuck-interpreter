@@ -32,6 +32,10 @@ char VirtualMachine::readValue() {
     return this->memory[this->memoryPointer];
 }
 
+void VirtualMachine::loadValue(char val) {
+    this->memory[this->memoryPointer] = val;
+}
+
 int VirtualMachine::getMemoryPointer() {
     return this->memoryPointer;
 }

@@ -11,6 +11,7 @@ class VirtualMachine {
 	void increment();
 	void decrement();
 	char readValue();
+	void loadValue(char);
 
 	int getMemoryPointer();
 
