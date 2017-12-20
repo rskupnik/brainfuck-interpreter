@@ -24,9 +24,12 @@ int main(int argc, char* argv[]) {
 
     vm.shiftLeft();
     cout << vm.getMemoryPointer() << endl;
-    cout << "Should be: 0" << endl;
+    cout << "Should be: 0" << endl << endl;
 
     vm.increment();
+    char val = vm.readValue();
+    cout << (int)val << endl;
+    cout << "Should be: 1" << endl;
 
     return 0;
 }
