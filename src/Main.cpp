@@ -29,7 +29,12 @@ int main(int argc, char* argv[]) {
     vm.increment();
     char val = vm.readValue();
     cout << (int)val << endl;
-    cout << "Should be: 1" << endl;
+    cout << "Should be: 1" << endl << endl;
+
+    vm.decrement();
+    val = vm.readValue();
+    cout << (int)val << endl;
+    cout << "Should be: 0" << endl << endl;
 
     return 0;
 }
