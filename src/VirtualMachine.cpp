@@ -21,7 +21,7 @@ void VirtualMachine::shiftLeft() {
 }
 
 void VirtualMachine::increment() {
-    return;
+    this->memory[this->memoryPointer]++;
 }
 
 int VirtualMachine::getMemoryPointer() {

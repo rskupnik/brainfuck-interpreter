@@ -26,5 +26,7 @@ int main(int argc, char* argv[]) {
     cout << vm.getMemoryPointer() << endl;
     cout << "Should be: 0" << endl;
 
+    vm.increment();
+
     return 0;
 }
