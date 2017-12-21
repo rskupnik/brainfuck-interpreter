@@ -1,6 +1,7 @@
 #include <iostream>
 #include "Interpreter.h"
 #include "VirtualMachine.h"
+#include "Brainfuck.h"
 
 using namespace std;
 
@@ -41,6 +42,10 @@ int main(int argc, char* argv[]) {
     val = vm.readValue();
     cout << val << endl;
     cout << "Test loadValue() - should be: a" << endl << endl;
+
+    char program[] = {'+'};
+    Brainfuck brainfuck;
+    brainfuck.execute(program);
 
     return 0;
 }
