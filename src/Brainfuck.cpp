@@ -3,20 +3,23 @@
 
 using namespace std;
 
-void Brainfuck::execute(char program[]) {
-    Command commands[] = {};
-    commands = translate(program);
-    for (int i = 0; i < sizeof(commands)/sizeof(*commands); i++) {
-	cout << commands[i];
+void Brainfuck::execute(string program) {
+    vector<Command> commands = translate(program);
+    for (Command c : commands) {
+	cout << c;
     }
     return;
 }
 
-Command* Brainfuck::translate(char program[]) {
-    Command output[sizeof(program)];
-    for (int i = 0; i < sizeof(program); i++) {
-        char c = program[i];
-	output[i] = this->interpreter.interpret(c);
+vector<Command> Brainfuck::translate(string program) {
+    vector<Command> output(1);
+    cout << "Hello" << endl;
+    cout << program.length() << endl;
+    for (char c : program) {
+	cout << c << endl;
+//	Command cmd = this->interpreter.interpret(c);
+	//cout << cmd << endl;
+	//output.push_back(cmd);
     }
     return output;
 }
