@@ -8,11 +8,12 @@
 
 class Brainfuck {
     public:
-        void execute(std::string);
+        void executeProgram(const std::string&);
 
     private:
 	Interpreter interpreter;
 	VirtualMachine vm;
 
-	std::vector<Command> translate(std::string);
+	std::vector<Command> translate(const std::string&);
+	void executeCommand(const Command&);
 };
