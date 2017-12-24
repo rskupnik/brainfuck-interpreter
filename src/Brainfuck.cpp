@@ -23,6 +23,7 @@ vector<Command> Brainfuck::translate(const string& program) {
 }
 
 void Brainfuck::executeCommand(const Command& cmd) {
+    char val;
     switch (cmd) {
 	case SHIFT_RIGHT:
 	    this->vm.shiftRight();
@@ -37,14 +38,13 @@ void Brainfuck::executeCommand(const Command& cmd) {
 	    this->vm.decrement();
 	    break;
 	case OUTPUT:
-	    char val = this->vm.readValue();
+	    val = this->vm.readValue();
 	    cout << val;
 	    break;
-	//case INPUT:
-	    //char val = 0;
-	    //val << cin;
-	    //this->vm.loadValue(val);
-	    //break;
+	case INPUT:
+	    cin >> val;
+	    this->vm.loadValue(val);
+	    break;
     }
 
     return;

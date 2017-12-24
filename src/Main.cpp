@@ -6,13 +6,6 @@
 using namespace std;
 
 int main(int argc, char* argv[]) {
-    
-    cout << "Hello World" << endl;    
-
-    //Interpreter interpreter;
-    //char input = '.';
-    //Command cmd = interpreter.interpret(input);
-    //cout << cmd << endl;
 
     VirtualMachine vm;
     vm.shiftRight();
@@ -43,7 +36,7 @@ int main(int argc, char* argv[]) {
     cout << val << endl;
     cout << "Test loadValue() - should be: a" << endl << endl;
 
-    string program = ">>.<<,";
+    string program = "+++++++++++++++++++++++++++++++++...";
     Brainfuck brainfuck;
     brainfuck.executeProgram(program);
 
