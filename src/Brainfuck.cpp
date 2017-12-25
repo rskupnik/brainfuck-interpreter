@@ -1,7 +1,11 @@
 #include "Brainfuck.h"
+#include "Loop.h"
 #include <iostream>
+#include <stack>
 
 using namespace std;
+
+stack<Loop> loops;
 
 void Brainfuck::executeProgram(const string& program) {
     vector<Command> commands = translate(program);
@@ -44,6 +48,11 @@ void Brainfuck::executeCommand(const Command& cmd) {
 	case INPUT:
 	    cin >> val;
 	    this->vm.loadValue(val);
+	    break;
+	case LOOP_START:
+	    loops.push(Loop(0, this->vm.getMemoryPointer())); 
+	    break;
+	case LOOP_END:
 	    break;
     }
 

@@ -4,5 +4,7 @@ class Loop {
     public:
 	int loopStartPosition;
 	int loopEndPosition;
-	int* countPointer;
+	int counterPointer;
+
+	Loop(int start, int counterPtr) : loopStartPosition(start), counterPointer(counterPtr) {}
 };
