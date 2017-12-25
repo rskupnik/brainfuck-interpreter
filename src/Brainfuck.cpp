@@ -8,25 +8,27 @@ using namespace std;
 stack<Loop> loops;
 
 void Brainfuck::executeProgram(const string& program) {
-    vector<Command> commands = translate(program);
-    for (int i = 0; i < commands.size(); i++) {
-	Command c = commands[i];
-	this->executeCommand(c);
+    map<int, Command> commands = translate(program);
+    map<int, Command>::iterator it;
+    for (it = commands.begin(); it != commands.end(); it++) {
+	int instructionNumber = it->first;
+	Command c = it->second;
+	this->executeCommand(instructionNumber, c);
     }
     return;
 }
 
-vector<Command> Brainfuck::translate(const string& program) {
-    vector<Command> output(1);
+map<int, Command> Brainfuck::translate(const string& program) {
+    map<int, Command> output;
     for (int i = 0; i < program.length(); i++) {
 	char c = program[i];
 	Command cmd = this->interpreter.interpret(c);
-	output.push_back(cmd);
+	output[i] = cmd;
     }
     return output;
 }
 
-void Brainfuck::executeCommand(const Command& cmd) {
+void Brainfuck::executeCommand(const int instructionNumber, const Command& cmd) {
     char val;
     switch (cmd) {
 	case SHIFT_RIGHT:

@@ -3,7 +3,7 @@
 #include "Interpreter.h"
 #include "VirtualMachine.h"
 #include "Command.h"
-#include <vector>
+#include <map>
 #include <string>
 
 class Brainfuck {
@@ -14,6 +14,6 @@ class Brainfuck {
 	Interpreter interpreter;
 	VirtualMachine vm;
 
-	std::vector<Command> translate(const std::string&);
-	void executeCommand(const Command&);
+	std::map<int, Command> translate(const std::string&);
+	void executeCommand(const int, const Command&);
 };
