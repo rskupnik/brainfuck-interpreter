@@ -6,9 +6,13 @@
 using namespace std;
 
 stack<Loop> loops;
+map<int, Loop> foundLoops;
+
+void findLoops(map<int, Command>&);
 
 void Brainfuck::executeProgram(const string& program) {
     map<int, Command> commands = translate(program);
+    findLoops(commands);
     map<int, Command>::iterator it;
     for (it = commands.begin(); it != commands.end(); it++) {
 	int instructionNumber = it->first;
@@ -51,15 +55,35 @@ void Brainfuck::executeCommand(const int instructionNumber, const Command& cmd) 
 	    cin >> val;
 	    this->vm.loadValue(val);
 	    break;
-	case LOOP_START:
-	    loops.push(Loop(instructionNumber, this->vm.getMemoryPointer())); 
+	case LOOP_START: {
+	    Loop loop = foundLoops[instructionNumber];
+	    cout << "Found a loop that starts at " << loop.loopStartPosition << " and ends at " << loop.loopEndPosition << endl << endl; 
 	    break;
-	case LOOP_END:
-	    Loop loop = loops.top();
-	    loops.pop();
-	    loop.loopEndPosition = instructionNumber;
+	}
+	case LOOP_END: {
+	    Loop loop2 = foundLoops[instructionNumber];
 	    break;
+	}
     }
 
     return;
+}
+
+void findLoops(map<int, Command>& commands) {
+    map<int, Command>::iterator it;
+    for (it = commands.begin(); it != commands.end(); it++) {
+	int pos = it->first;
+	Command cmd = it->second;
+	switch (cmd) {
+	    case LOOP_START:
+  	        loops.push(Loop(pos));
+		break;
+	    case LOOP_END:
+		Loop loop = loops.top();
+		loops.pop();
+		loop.loopEndPosition = pos;
+		foundLoops[loop.loopStartPosition] = loop;
+		break;
+	}
+    }
 }
