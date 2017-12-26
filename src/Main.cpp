@@ -36,7 +36,8 @@ int main(int argc, char* argv[]) {
     cout << val << endl;
     cout << "Test loadValue() - should be: a" << endl << endl;
 
-    string program = "+++++++++++++++++++++++++++++++++...";
+   // string program = "+++++++++++++++++++++++++++++++++...";
+    string program = "+[..[....]...[]...[..[..].]]";
     Brainfuck brainfuck;
     brainfuck.executeProgram(program);
 

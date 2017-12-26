@@ -52,9 +52,12 @@ void Brainfuck::executeCommand(const int instructionNumber, const Command& cmd) 
 	    this->vm.loadValue(val);
 	    break;
 	case LOOP_START:
-	    loops.push(Loop(0, this->vm.getMemoryPointer())); 
+	    loops.push(Loop(instructionNumber, this->vm.getMemoryPointer())); 
 	    break;
 	case LOOP_END:
+	    Loop loop = loops.top();
+	    loops.pop();
+	    loop.loopEndPosition = instructionNumber;
 	    break;
     }
 
