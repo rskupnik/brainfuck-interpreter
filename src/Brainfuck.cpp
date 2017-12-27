@@ -7,6 +7,7 @@ using namespace std;
 
 stack<Loop> loops;
 map<int, Loop> foundLoops;
+Loop currentLoop = 0;
 
 void findLoops(map<int, Command>&);
 
@@ -58,10 +59,23 @@ void Brainfuck::executeCommand(const int instructionNumber, const Command& cmd) 
 	case LOOP_START: {
 	    Loop loop = foundLoops[instructionNumber];
 	    cout << "Found a loop that starts at " << loop.loopStartPosition << " and ends at " << loop.loopEndPosition << endl << endl; 
+	    val = this->vm.readValue();
+	    cout << "Val is: " << ((int) val) << " and was read at memoyr pointer " << this->vm.getMemoryPointer() << endl << endl;
+	    if (val == 0) {
+		this->vm.setMemoryPointer(loop.loopEndPosition + 1);
+		cout << "Set memory pointer to point to " << this->vm.getMemoryPointer() << endl << endl;
+	    }
+	    currentLoop = loop;
 	    break;
 	}
 	case LOOP_END: {
-	    Loop loop2 = foundLoops[instructionNumber];
+	    Loop loop2 = currentLoop;
+	    val = this->vm.readValue();
+	    cout << "End of loop found, val is: " << ((int) val) << " and was read at memory pointer " << this->vm.getMemoryPointer()  << endl << endl;
+	    if (val != 0) {
+		this->vm.setMemoryPointer(loop2.loopStartPosition + 1);
+		cout << "Set memory pointer to " << this->vm.getMemoryPointer() << endl << endl;
+	    }
 	    break;
 	}
     }
@@ -76,6 +90,7 @@ void findLoops(map<int, Command>& commands) {
 	Command cmd = it->second;
 	switch (cmd) {
 	    case LOOP_START:
+		cout << "Identified start of loop at " << pos << endl << endl;
   	        loops.push(Loop(pos));
 		break;
 	    case LOOP_END:
@@ -83,6 +98,7 @@ void findLoops(map<int, Command>& commands) {
 		loops.pop();
 		loop.loopEndPosition = pos;
 		foundLoops[loop.loopStartPosition] = loop;
+		cout << "Identified end of loop at " << pos << endl << endl;
 		break;
 	}
     }

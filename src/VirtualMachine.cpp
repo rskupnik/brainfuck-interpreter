@@ -39,3 +39,7 @@ void VirtualMachine::loadValue(char val) {
 int VirtualMachine::getMemoryPointer() {
     return this->memoryPointer;
 }
+
+void VirtualMachine::setMemoryPointer(int val) {
+    this->memoryPointer = val;
+}

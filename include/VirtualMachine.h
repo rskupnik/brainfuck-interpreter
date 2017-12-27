@@ -14,6 +14,7 @@ class VirtualMachine {
 	void loadValue(char);
 
 	int getMemoryPointer();
+	void setMemoryPointer(int);
 
     private:
         char memory[MEMORY_SIZE];
