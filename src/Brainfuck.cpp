@@ -11,15 +11,29 @@ Loop currentLoop = 0;
 
 void findLoops(map<int, Command>&);
 
+void Brainfuck::setProgramCounter(const int val) {
+    this->programCounter = val;
+}
+
 void Brainfuck::executeProgram(const string& program) {
     map<int, Command> commands = translate(program);
     findLoops(commands);
-    map<int, Command>::iterator it;
-    for (it = commands.begin(); it != commands.end(); it++) {
-	int instructionNumber = it->first;
-	Command c = it->second;
-	this->executeCommand(instructionNumber, c);
+    while (true) {
+	int pc = this->programCounter;
+	if (pc >= commands.size()) {
+	    this->programCounter = 0;
+	    break;
+	}
+	Command c = commands[pc];
+	this->executeCommand(pc, c);
+	this->programCounter++;
     }
+    //map<int, Command>::iterator it;
+    //for (it = commands.begin(); it != commands.end(); it++) {
+//	int instructionNumber = it->first;
+//	Command c = it->second;
+//	this->executeCommand(instructionNumber, c);
+    //}
     return;
 }
 
@@ -38,15 +52,19 @@ void Brainfuck::executeCommand(const int instructionNumber, const Command& cmd) 
     switch (cmd) {
 	case SHIFT_RIGHT:
 	    this->vm.shiftRight();
+	    cout << "Shuffled right, memory pointer is now " << this->vm.getMemoryPointer() << endl << endl;
 	    break;
 	case SHIFT_LEFT:
 	    this->vm.shiftLeft();
+	    cout << "Shuffled left, memory pointer is now " << this->vm.getMemoryPointer() << endl << endl;
 	    break;
 	case INCREMENT:
 	    this->vm.increment();
+	    cout << "Incremented value at pointer " << this->vm.getMemoryPointer() << " to value " << ((int) this->vm.readValue()) << endl << endl;
 	    break;
 	case DECREMENT:
 	    this->vm.decrement();
+	    cout << "Decremented value at pointer " << this->vm.getMemoryPointer() << " to value " << ((int) this->vm.readValue()) << endl << endl;
 	    break;
 	case OUTPUT:
 	    val = this->vm.readValue();
@@ -62,8 +80,8 @@ void Brainfuck::executeCommand(const int instructionNumber, const Command& cmd) 
 	    val = this->vm.readValue();
 	    cout << "Val is: " << ((int) val) << " and was read at memoyr pointer " << this->vm.getMemoryPointer() << endl << endl;
 	    if (val == 0) {
-		this->vm.setMemoryPointer(loop.loopEndPosition + 1);
-		cout << "Set memory pointer to point to " << this->vm.getMemoryPointer() << endl << endl;
+		this->programCounter = loop.loopEndPosition + 1;
+		cout << "Set program counter to point to " << this->programCounter << endl << endl;
 	    }
 	    currentLoop = loop;
 	    break;
@@ -73,8 +91,8 @@ void Brainfuck::executeCommand(const int instructionNumber, const Command& cmd) 
 	    val = this->vm.readValue();
 	    cout << "End of loop found, val is: " << ((int) val) << " and was read at memory pointer " << this->vm.getMemoryPointer()  << endl << endl;
 	    if (val != 0) {
-		this->vm.setMemoryPointer(loop2.loopStartPosition + 1);
-		cout << "Set memory pointer to " << this->vm.getMemoryPointer() << endl << endl;
+		this->programCounter = loop2.loopStartPosition;
+		cout << "Set memory pointer to " << this->programCounter << endl << endl;
 	    }
 	    break;
 	}

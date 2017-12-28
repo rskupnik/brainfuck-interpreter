@@ -9,10 +9,12 @@
 class Brainfuck {
     public:
         void executeProgram(const std::string&);
+	void setProgramCounter(const int);
 
     private:
 	Interpreter interpreter;
 	VirtualMachine vm;
+	int programCounter;
 
 	std::map<int, Command> translate(const std::string&);
 	void executeCommand(const int, const Command&);
