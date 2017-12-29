@@ -5,8 +5,7 @@
 
 using namespace std;
 
-int main(int argc, char* argv[]) {
-
+void runTests() {
     VirtualMachine vm;
     vm.shiftRight();
     cout << vm.getMemoryPointer() << endl;
@@ -35,9 +34,13 @@ int main(int argc, char* argv[]) {
     val = vm.readValue();
     cout << val << endl;
     cout << "Test loadValue() - should be: a" << endl << endl;
+}
 
-   // string program = "+++++++++++++++++++++++++++++++++...";
-    string program = "+++++++++++++++++++++++++++++++++[->+<].>.";
+int main(int argc, char* argv[]) {
+
+    //runTests();
+
+    string program = "++++++++[>++++[>++>+++>+++>+<<<<-]>+>+>->>+[<]<-]>>.>---.+++++++..+++.>>.<-.<.+++.------.--------.>>+.>++.";
     Brainfuck brainfuck;
     brainfuck.executeProgram(program);
 
