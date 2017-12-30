@@ -9,7 +9,6 @@
 class Brainfuck {
     public:
         void executeProgram(const std::string&);
-	void setProgramCounter(const int);
 
     private:
 	Interpreter interpreter;

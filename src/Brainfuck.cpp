@@ -5,15 +5,10 @@
 
 using namespace std;
 
-stack<Loop> loops;
-map<int, Loop> foundLoops;
-Loop currentLoop = 0;
+stack<Loop> loops;		// Used two times - once on the loop finding stage and once during command processing
+map<int, Loop> foundLoops;	// Stores the result of loop finding stage - the key is the index of the start of the loop
 
 void findLoops(map<int, Command>&);
-
-void Brainfuck::setProgramCounter(const int val) {
-    this->programCounter = val;
-}
 
 void Brainfuck::executeProgram(const string& program) {
     map<int, Command> commands = translate(program);
